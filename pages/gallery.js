@@ -115,7 +115,7 @@ function Gallery({ mydata }) {
                 className="w-full object-cover rounded-md h-[180px]  block"
                 width={100}
                 height={100}
-                src={`/uploads/${photo.avatar}`}
+                src={photo.avatar}
               />
             </div>
           ))}

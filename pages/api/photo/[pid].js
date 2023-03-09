@@ -1,3 +1,4 @@
+import { cloudRemove } from "@/middleware/cloudnary";
 import connectMongo from "@/middleware/mongoose";
 import profileModel from "@/models/profileModel";
 import nextConnect from "next-connect";
@@ -7,7 +8,8 @@ handler.get(async (req, res) => {
   try {
     await connectMongo();
     const data = await profileModel.findOneAndRemove({ _id: req.query.pid });
-    res.send(data);
+    const rmdata = await cloudRemove(data.public_id, "next");
+    res.send(rmdata);
   } catch (err) {
     console.log(err);
   }
