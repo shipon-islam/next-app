@@ -1,3 +1,5 @@
+import connectMongo from "@/middleware/mongoose";
+import profileModel from "@/models/profileModel";
 import { Inter } from "@next/font/google";
 import axios from "axios";
 import Head from "next/head";
@@ -124,55 +126,10 @@ function Gallery({ mydata }) {
   );
 }
 export async function getServerSideProps(context) {
-  // connectMongo();
-  // const Apidata = await profileModel.find();
+  connectMongo();
+  const Apidata = await profileModel.find();
   return {
-    props: {
-      mydata: [
-        {
-          _id: "63e8d056450c77433a6ad5a3",
-          user: "shipon islam",
-          avatar: "remini20220515220316119_1676202070049.jpg",
-          __v: 0,
-        },
-        {
-          _id: "63e8d079450c77433a6ad5a7",
-          user: "shipon islam",
-          avatar: "remini20220505001511095_1676202105668.jpg",
-          __v: 0,
-        },
-        {
-          _id: "63e8d13d450c77433a6ad5b0",
-          user: "shipon islam",
-          avatar: "remini20220304163000516_1676202301796.jpg",
-          __v: 0,
-        },
-        {
-          _id: "63e8d14a450c77433a6ad5b3",
-          user: "shipon islam",
-          avatar: "latest-bw_1676202314932.jpg",
-          __v: 0,
-        },
-        {
-          _id: "63e8d199450c77433a6ad5b7",
-          user: "shipon islam",
-          avatar: "remini20220508201154558_1676202393947.jpg",
-          __v: 0,
-        },
-        {
-          _id: "63f3825c8813f1fdadd63f08",
-          user: "shipon islam",
-          avatar: "1660010109413-01_1676903004042.jpeg",
-          __v: 0,
-        },
-        {
-          _id: "63f382708813f1fdadd63f0b",
-          user: "shipon islam",
-          avatar: "1662123940191-01_1676903024739.jpeg",
-          __v: 0,
-        },
-      ],
-    }, // will be passed to the page component as props
+    props: { mydata: JSON.parse(JSON.stringify(Apidata)) }, // will be passed to the page component as props
   };
 }
 export default Gallery;
