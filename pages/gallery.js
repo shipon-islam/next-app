@@ -17,7 +17,6 @@ function Gallery({ mydata }) {
   const [progress, setProgress] = useState(0);
   const fileInputRef = useRef(null);
   const router = useRouter();
-  console.log(mydata);
 
   const handleUpload = async () => {
     const config = {

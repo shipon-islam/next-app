@@ -2,10 +2,9 @@ import multer from "multer";
 import nextConnect from "next-connect";
 import path from "path";
 const fileUploadMiddle = nextConnect();
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "../public/uploads");
+    cb(null, "public/uploads");
   },
   filename: function (req, file, cb) {
     const fileExt = path.extname(file.originalname);
